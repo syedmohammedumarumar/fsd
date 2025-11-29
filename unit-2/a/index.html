@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JavaScript Basics</title>
+</head>
+<body>
+  <h2>JavaScript Basics: Variables, Functions, Objects</h2>
+  <p id="output"></p>
+
+  <script>
+    // 1. Variables
+    var name = "Uday";      // var function scoped
+    let age = 25;           // let block scoped
+    const pi = 3.14159;     // const fixed value
+
+    // 2. Functions
+    function greet(user) {
+      return "Hello, " + user + "!";
+    }
+
+    function addNumbers(a, b) {
+      return a + b;
+    }
+
+    // 3. Object with properties & method
+    let student = {
+      firstName: "John",
+      lastName: "Doe",
+      age: 20,
+      fullName: function() {
+        return this.firstName + " " + this.lastName;
+      }
+    };
+
+    // Display outputs
+    let outputText = "";
+    outputText += "Name: " + name + "<br>";
+    outputText += "Age: " + age + "<br>";
+    outputText += "Value of PI: " + pi + "<br><br>";
+
+    outputText += greet(name) + "<br>";
+    outputText += "Sum of 5 and 10 is: " + addNumbers(5, 10) + "<br><br>";
+
+    outputText += "Student Name: " + student.fullName() + "<br>";
+    outputText += "Student Age: " + student.age + "<br>";
+
+    // Print to browser
+    document.getElementById("output").innerHTML = outputText;
+  </script>
+</body>
+</html>

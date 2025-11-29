@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dynamic Form + jQuery Validation</title>
+
+    <!-- jQuery CDN -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        .error { color: red; font-size: 14px; }
+        .input-group { margin-bottom: 10px; }
+        input { padding: 6px; margin: 5px; }
+        button { padding: 6px 12px; }
+    </style>
+</head>
+<body>
+
+    <h2>Dynamic Form with jQuery Validation</h2>
+
+    <form id="myForm">
+
+        <div id="inputContainer">
+            <div class="input-group">
+                <input type="text" class="nameField" placeholder="Enter Name">
+                <input type="text" class="emailField" placeholder="Enter Email">
+                <span class="error"></span>
+            </div>
+        </div>
+
+        <button type="button" id="addField">+ Add More</button>
+        <br><br>
+
+        <button type="submit">Submit</button>
+    </form>
+
+    <div id="result"></div>
+
+    <script>
+        // Add new input fields dynamically
+        $("#addField").click(function () {
+            $("#inputContainer").append(`
+                <div class="input-group">
+                    <input type="text" class="nameField" placeholder="Enter Name">
+                    <input type="text" class="emailField" placeholder="Enter Email">
+                    <span class="error"></span>
+                </div>
+            `);
+        });
+
+        // Form submit validation
+        $("#myForm").submit(function (event) {
+            event.preventDefault();
+
+            let isValid = true;
+
+            $(".input-group").each(function () {
+                let name = $(this).find(".nameField").val().trim();
+                let email = $(this).find(".emailField").val().trim();
+                let errorBox = $(this).find(".error");
+
+                errorBox.text(""); // clear previous errors
+
+                if (name === "" || email === "") {
+                    errorBox.text("All fields are required");
+                    isValid = false;
+                } 
+                else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                    errorBox.text("Invalid email format");
+                    isValid = false;
+                }
+            });
+
+            if (isValid) {
+                $("#result").html("<h3>Form Submitted Successfully ✔️</h3>");
+            }
+        });
+    </script>
+
+</body>
+</html>

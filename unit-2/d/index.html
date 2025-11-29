@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>jQuery UI Elements</title>
+
+    <!-- jQuery + jQuery UI -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+
+    <style>
+        body { font-family: Arial; padding: 20px; }
+        #sliderValue { font-weight: bold; color: green; }
+        .modal-content { padding: 20px; }
+        #tabs { margin-top: 20px; }
+        .ui-dialog-titlebar-close { display: none; } /* hide default close button */
+    </style>
+</head>
+
+<body>
+
+    <h2>Interactive UI Elements with jQuery</h2>
+
+    <!-- ================= Slider ================= -->
+    <h3>Slider</h3>
+    <div id="slider"></div>
+    <p>Value: <span id="sliderValue">50</span></p>
+
+    <hr>
+
+    <!-- ================= Modal ================= -->
+    <h3>Modal Popup</h3>
+    <button id="openModal">Open Modal</button>
+
+    <div id="myModal" title="Simple Modal">
+        <div class="modal-content">
+            <p>This is a jQuery UI modal dialog!</p>
+            <button id="closeModal">Close</button>
+        </div>
+    </div>
+
+    <hr>
+
+    <!-- ================= Tabs ================= -->
+    <h3>Tabs</h3>
+    <div id="tabs">
+        <ul>
+            <li><a href="#tab1">Home</a></li>
+            <li><a href="#tab2">Profile</a></li>
+            <li><a href="#tab3">Settings</a></li>
+        </ul>
+
+        <div id="tab1">
+            <p>Welcome to Home tab.</p>
+        </div>
+        <div id="tab2">
+            <p>This is Profile tab.</p>
+        </div>
+        <div id="tab3">
+            <p>Customize your Settings here.</p>
+        </div>
+    </div>
+
+    <!-- ================= jQuery Script ================= -->
+    <script>
+
+        // Slider
+        $("#slider").slider({
+            value: 50,
+            min: 0,
+            max: 100,
+            slide: function(event, ui) {
+                $("#sliderValue").text(ui.value);
+            }
+        });
+
+        // Modal
+        $("#myModal").dialog({
+            autoOpen: false,
+            modal: true,
+            width: 300
+        });
+
+        $("#openModal").click(function () {
+            $("#myModal").dialog("open");
+        });
+
+        $("#closeModal").click(function () {
+            $("#myModal").dialog("close");
+        });
+
+        // Tabs
+        $("#tabs").tabs();
+        
+    </script>
+
+</body>
+</html>

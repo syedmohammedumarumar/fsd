@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>JSON Dynamic Rendering</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    .card { 
+      border: 1px solid #ccc; 
+      padding: 10px; 
+      margin: 10px; 
+      width: 200px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Dynamic Content Rendering using JSON</h2>
+
+  <!-- Container where content will be added -->
+  <div id="container"></div>
+
+  <script>
+    // Sample JSON data
+    const students = [
+      { name: "Umar", age: 21, course: "CSE" },
+      { name: "Aisha", age: 20, course: "ECE" },
+      { name: "Rahul", age: 22, course: "IT" }
+    ];
+
+    // Select the container
+    const container = document.getElementById("container");
+
+    // Loop through JSON and generate HTML
+    students.forEach(student => {
+      const card = `
+        <div class="card">
+          <h3>${student.name}</h3>
+          <p>Age: ${student.age}</p>
+          <p>Course: ${student.course}</p>
+        </div>
+      `;
+      container.innerHTML += card;  // Add the card to page
+    });
+  </script>
+
+</body>
+</html>
